@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom
+        -Logo_Designer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header remains the same -->
+        <header class="app-header">
+            <div>
+                <h1><i class="fa-solid fa-swatchbook"></i> Classroom Logo Designer</h1>
+                <p class="subtitle">Create Simple Designs with Easy Tools Perfect for Beginners & Kids!</p>
+            </div>
+            <div class="header-actions">
+                <button id="save-json-btn" class="header-btn"><i class="fa-solid fa-save"></i> Save</button>
+                <button id="load-json-btn" class="header-btn"><i class="fa-solid fa-folder-open"></i> Load</button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Left Toolbar and Canvas Area remain the same -->
+            <div class="left-toolbar">
+                <div class="tool-section">
+                    <h3>Tools</h3>
+                    <div class="main-tools">
+                        <button class="tool-btn active" data-tool="select" title="Select/Move (V)"><i class="fa-solid fa-arrow-pointer"></i></button>
+                        <button class="tool-btn" data-tool="rectangle" title="Rectangle (R)"><i class="fa-regular fa-square"></i></button>
+                        <button class="tool-btn" data-tool="circle" title="Circle (C)"><i class="fa-regular fa-circle"></i></button>
+                        <button class="tool-btn" data-tool="triangle" title="Triangle"><i class="fa-solid fa-play fa-rotate-270"></i></button>
+                    </div>
+                </div>
+                 <div class="tool-section">
+                    <h3>Text</h3>
+                    <input type="text" id="text-input" placeholder="Enter text...">
+                    <select id="font-select">
+                        <option value="Inter">Inter</option>
+                        <option value="Poppins">Poppins</option>
+                        <option value="Roboto">Roboto</option>
+                        <option value="Arial">Arial</option>
+                    </select>
+                    <div class="inline-controls">
+                        <input type="number" id="font-size" min="1" value="48">
+                        <button id="add-text-btn" class="btn-full-small">Add</button>
+                    </div>
+                </div>
+                <div class="tool-section">
+                    <h3>Icons</h3>
+                    <div class="icon-grid">
+                        <button class="icon-btn" data-icon="📚">📚</button>
+                        <button class="icon-btn" data-icon="✏️">✏️</button>
+                        <button class="icon-btn" data-icon="🎓">🎓</button>
+                        <button class="icon-btn" data-icon="🌎">🌎</button>
+                        <button class="icon-btn" data-icon="⚛️">⚛️</button>
+                        <button class="icon-btn" data-icon="🔬">🔬</button>
+                        <button class="icon-btn" data-icon="💡">💡</button>
+                        <button class="icon-btn" data-icon="🎨">🎨</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="canvas-area">
+                <div class="canvas-controls-top">
+                    <button id="undo-btn" title="Undo (Ctrl+Z)"><i class="fa-solid fa-undo"></i></button>
+                    <button id="redo-btn" title="Redo (Ctrl+Y)"><i class="fa-solid fa-redo"></i></button>
+                    <span class="divider"></span>
+                    <button id="bring-forward-btn" title="Bring Forward"><i class="fa-solid fa-arrow-up"></i></button>
+                    <button id="send-backward-btn" title="Send Backward"><i class="fa-solid fa-arrow-down"></i></button>
+                    <button id="delete-btn" title="Delete (Del)"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+                <canvas id="logo-canvas" width="800" height="600"></canvas>
+                <div class="canvas-controls-bottom">
+                    <button id="zoom-out-btn" title="Zoom Out"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                    <span id="zoom-level">100%</span>
+                    <button id="zoom-in-btn" title="Zoom In"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="right-toolbar">
+                <div id="appearance-panel" class="tool-section disabled-panel">
+                    <h3>Appearance</h3>
+                    
+                    <!-- Text Properties -->
+                    <div id="text-props" class="hidden">
+                         <div class="prop-control">
+                            <label for="text-color">Color</label>
+                            <input type="color" id="text-color" value="#333333">
+                        </div>
+                    </div>
+                    
+                    <!-- Shape/Icon Properties -->
+                    <div id="shape-props" class="hidden">
+                        <div class="prop-control">
+                            <label>Fill Type</label>
+                            <select id="fill-type-select">
+                                <option value="solid">Solid</option>
+                                <option value="linear">Linear Gradient</option>
+                                <option value="radial">Radial Gradient</option>
+                            </select>
+                        </div>
+                        <div id="solid-fill-props">
+                             <div class="prop-control">
+                                <label for="fill-color">Color</label>
+                                <input type="color" id="fill-color" value="#4b6cb7">
+                            </div>
+                        </div>
+                        <div id="gradient-fill-props" class="hidden">
+                            <div class="prop-control">
+                                <label for="gradient-color-1">Color 1</label>
+                                <input type="color" id="gradient-color-1" value="#4b6cb7">
+                            </div>
+                            <div class="prop-control">
+                                <label for="gradient-color-2">Color 2</label>
+                                <input type="color" id="gradient-color-2" value="#182848">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="prop-control">
+                            <label for="stroke-color">Stroke</label>
+                            <input type="color" id="stroke-color" value="#182848">
+                        </div>
+                        <div class="prop-control">
+                            <label for="stroke-width">Width</label>
+                            <input type="number" id="stroke-width" min="0" value="2">
+                        </div>
+                    </div>
+
+                    <!-- Common Properties -->
+                     <div id="common-props" class="hidden">
+                         <hr>
+                         <div class="prop-control">
+                             <label for="opacity-slider">Opacity</label>
+                             <span id="opacity-value">100%</span>
+                         </div>
+                         <input type="range" id="opacity-slider" min="0" max="1" step="0.01" value="1" class="slider">
+                     </div>
+                </div>
+
+                 <div class="tool-section">
+                    <h3>Align</h3>
+                    <div class="align-tools">
+                        <button data-align="left" title="Align Left"><i class="fa-solid fa-align-left"></i></button>
+                        <button data-align="center" title="Align Center"><i class="fa-solid fa-align-center"></i></button>
+                        <button data-align="right" title="Align Right"><i class="fa-solid fa-align-right"></i></button>
+                        <button data-align="top" title="Align Top"><i class="fa-solid fa-align-left fa-rotate-90"></i></button>
+                        <button data-align="middle" title="Align Middle"><i class="fa-solid fa-align-center fa-rotate-90"></i></button>
+                        <button data-align="bottom" title="Align Bottom"><i class="fa-solid fa-align-right fa-rotate-90"></i></button>
+                    </div>
+                </div>
+                <div class="tool-section">
+                    <h3>Layers</h3>
+                    <div id="layers-panel" class="layers-panel"></div>
+                </div>
+                <div class="tool-section">
+                    <h3>Export</h3>
+                    <button id="save-png-btn" class="btn-full"><i class="fa-solid fa-file-image"></i> Export PNG</button>
+                    <button id="save-svg-btn" class="btn-full"><i class="fa-solid fa-file-code"></i> Export SVG</button>
+                </div>
+                <div class="tool-section">
+                    <button id="clear-btn" class="btn-full btn-danger"><i class="fa-solid fa-eraser"></i> Clear Canvas</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer">
+            <p>Developed by <a href="" target="_blank" rel="noopener noreferrer">Muhammad Areeb</a></p>
+            <p><a id="feedback-link" href="mailto:areebk983@gmail.com">Provide Feedback</a></p>
+        </footer>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
